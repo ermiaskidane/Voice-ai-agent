@@ -23,7 +23,9 @@ export default function VoiceAIAgent() {
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
+  // const [AIMessage, setAIMessage] = useState<Message[]>([])
   const [currentTranscript, setCurrentTranscript] = useState("")
+  const [AICurrentTranscript, setAICurrentTranscript] = useState("")
   const [publicKey1, setPublicKey1] = useState("")
   const [assistantId1, setAssistantId1] = useState("")
   const [showSettings, setShowSettings] = useState(false)
@@ -141,7 +143,7 @@ export default function VoiceAIAgent() {
   useEffect(() => {
     const welcomeMessage: Message = {
       id: "1",
-      text: currentTranscript,
+      text: "Hello! I'm your AI voice assistant powered by Vapi. Configure your settings and start a conversation to begin!",
       speaker: "ai",
       timestamp: new Date(),
     }
@@ -269,7 +271,7 @@ export default function VoiceAIAgent() {
                 onClick={toggleConnection}
                 size="lg"
                 disabled={!publicKey && !assistantId.trim()}
-                className={`relative px-8 py-4 text-lg font-medium transition-all duration-300 ${
+                className={`relative px-8 py-4 text-lg font-medium transition-all duration-300 cursor-pointer ${
                   isConnected
                     ? "bg-destructive hover:bg-destructive/90 text-destructive-foreground shadow-lg shadow-destructive/25"
                     : "bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/25"
@@ -292,7 +294,7 @@ export default function VoiceAIAgent() {
                 onClick={() => setShowSettings(true)}
                 variant="outline"
                 size="lg"
-                className="px-6 py-4 text-lg glass hover:bg-accent/10 border-accent/50 bg-transparent"
+                className="cursor-pointer px-6 py-4 text-lg glass hover:bg-accent/10 border-accent/50 bg-transparent"
               >
                 <Settings className="w-5 h-5 mr-2" />
                 Settings
@@ -334,9 +336,16 @@ export default function VoiceAIAgent() {
               </Badge>
             )}
           </div>
-          {currentTranscript && (
+          {currentTranscript && !isSpeaking && (
             <div className="mt-8 p-6 glass rounded-2xl max-w-2xl mx-auto border border-accent/20">
               <p className="text-sm text-muted-foreground mb-2 font-medium">You're saying:</p>
+              <p className="text-foreground font-medium text-lg">{currentTranscript}</p>
+            </div>
+          )}
+
+          {currentTranscript && isSpeaking && (
+            <div className="mt-8 p-6 glass rounded-2xsl max-w-2xl mx-auto border border-accent/20">
+              <p className="text-sm text-muted-foreground mb-2 font-medium">Assistant is saying:</p>
               <p className="text-foreground font-medium text-lg">{currentTranscript}</p>
             </div>
           )}
@@ -393,7 +402,7 @@ export default function VoiceAIAgent() {
               ))}
               
               {/* Live transcript - WhatsApp style */}
-              {currentTranscript && (
+              {/* {currentTranscript && (
                 <div className="flex justify-end">
                   <div className="max-w-[70%] px-4 py-2 rounded-2xl rounded-br-md bg-primary/80 text-primary-foreground">
                     <p className="text-sm leading-relaxed italic">{currentTranscript}</p>
@@ -402,7 +411,7 @@ export default function VoiceAIAgent() {
                     </p>
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Chat Input Area (Visual Only) */}

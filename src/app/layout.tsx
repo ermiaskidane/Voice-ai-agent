@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next"
 import { ThemeProvider } from "next-themes"
 import { Suspense } from "react"
 import "./globals.css"
+import SimpleVapiWidget from "@/components/vapi-widget";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,6 +34,9 @@ export default function RootLayout({
           <Suspense fallback={null}>{children}</Suspense>
         </ThemeProvider>
         <Analytics />
+        <SimpleVapiWidget
+            publicKey= {process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN!}
+            assistantId= {process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!}/>
       </body>
     </html>
   )

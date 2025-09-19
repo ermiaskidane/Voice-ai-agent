@@ -17,8 +17,8 @@ interface VapiSettingsProps {
 }
 
 export function VapiSettings({ publicKey, onPublicKeyChange, assistantId, onAssistantIdChange, isConnected }: VapiSettingsProps) {
-  const [tempKey, setTempKey] = useState(publicKey)
-  const [tempAssistantId, setTempAssistantId] = useState(assistantId)
+  const [tempKey, setTempKey] = useState(publicKey || process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN!)
+  const [tempAssistantId, setTempAssistantId] = useState(assistantId || process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!)
 
   const handleSave = () => {
     onPublicKeyChange(tempKey)
@@ -48,6 +48,7 @@ export function VapiSettings({ publicKey, onPublicKeyChange, assistantId, onAssi
               id="publicKey"
               type="password"
               placeholder="Enter your Vapi Public Key"
+              // defaultValue={process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN}
               value={tempKey}
               onChange={(e) => setTempKey(e.target.value)}
               className="pl-10 bg-background/50 border-border/50 focus:border-primary/50"
@@ -65,6 +66,7 @@ export function VapiSettings({ publicKey, onPublicKeyChange, assistantId, onAssi
               id="assistantId"
               type="text"
               placeholder="Enter Assistant ID (optional)"
+              // defaultValue={process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID}
               value={tempAssistantId}
               onChange={(e) => setTempAssistantId(e.target.value)}
               className="pl-10 bg-background/50 border-border/50 focus:border-primary/50"

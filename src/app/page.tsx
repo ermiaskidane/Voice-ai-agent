@@ -24,10 +24,13 @@ export default function VoiceAIAgent() {
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [currentTranscript, setCurrentTranscript] = useState("")
-  const [publicKey, setPublicKey] = useState(process.env.NEXT_PUBLIC_VAPI_PUBLIC_KEY!)
-  const [assistantId, setAssistantId] = useState(process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!)
+  const [publicKey1, setPublicKey1] = useState("")
+  const [assistantId1, setAssistantId1] = useState("")
   const [showSettings, setShowSettings] = useState(false)
 
+  const assistantId = process.env.NEXT_PUBLIC_VAPI_ASSISTANT_ID!
+  const publicKey = process.env.NEXT_PUBLIC_VAPI_WEB_TOKEN!
+  
   const vapiRef = useRef<any>(null)
 
   useEffect(() => {
@@ -223,13 +226,13 @@ export default function VoiceAIAgent() {
             >
               <X className="w-4 h-4" />
             </Button>
-            <VapiSettings
+            {/* <VapiSettings
               publicKey={publicKey}
-              onPublicKeyChange={setPublicKey}
+              onPublicKeyChange={setPublicKey1}
               assistantId={assistantId}
-              onAssistantIdChange={setAssistantId}
+              onAssistantIdChange={setAssistantId1}
               isConnected={isConnected}
-            />
+            /> */}
           </div>
         </div>
       )}

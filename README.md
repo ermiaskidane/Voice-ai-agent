@@ -1,3 +1,9 @@
+## Security Issue
+
+- used directly `PublicKey` and `AssistantID` from .env
+- User can fill form of setting and get access for Voice AI create
+- Form handled on client side, need to be store in DB and the fetch on server side components
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

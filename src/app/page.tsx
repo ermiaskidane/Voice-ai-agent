@@ -10,6 +10,7 @@ import { VoiceVisualizer } from "@/components/global/vapi-visualizer"
 import { VapiSettings } from "@/components/global/vapi-settings"
 import { Mic, MicOff, Volume2, MessageSquare, Sparkles, Zap, Brain, Waves, Settings, X, Bot } from "lucide-react"
 import type { VapiMessage, VapiAssistant } from "@vapi-ai/web"
+import { N8nAppointmentChatbot } from "@/components/n8n-appointment-chatbot"
 
 interface Message {
   id: string
@@ -23,7 +24,7 @@ export default function VoiceAIAgent() {
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
-  // const [AIMessage, setAIMessage] = useState<Message[]>([])
+  const [n8nWebhookUrl, setN8nWebhookUrl] = useState("")
   const [currentTranscript, setCurrentTranscript] = useState("")
   const [AICurrentTranscript, setAICurrentTranscript] = useState("")
   const [publicKey1, setPublicKey1] = useState("")
@@ -266,7 +267,7 @@ export default function VoiceAIAgent() {
           </p>
 
           <div className="flex flex-col items-center gap-6 mb-8">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 py-4">
               <Button
                 onClick={toggleConnection}
                 size="lg"
@@ -294,7 +295,7 @@ export default function VoiceAIAgent() {
                 onClick={() => setShowSettings(true)}
                 variant="outline"
                 size="lg"
-                className="cursor-pointer px-6 py-4 text-lg glass hover:bg-accent/10 border-accent/50 bg-transparent"
+                className="cursor-pointer px-6 py-4 text-lg glass !hover:bg-accent/10 border !border-accent  bg-transparent"
               >
                 <Settings className="w-5 h-5 mr-2" />
                 Settings
@@ -312,7 +313,7 @@ export default function VoiceAIAgent() {
               </Badge>
             )}
             {assistantId && (
-              <Badge variant="secondary" className="bg-blue-500/10 text-blue-600 border-blue-500/20 px-4 py-2">
+              <Badge variant="secondary" className="bg-blue-500/10 text-blue-600 !border-blue-500/20 px-4 py-2">
                 <Bot className="w-3 h-3 mr-2" />
                 Custom Assistant
               </Badge>
@@ -351,10 +352,14 @@ export default function VoiceAIAgent() {
           )}
         </div>
 
-        {/* WhatsApp-Style Conversation */}
         <div className="max-w-4xl mx-auto mb-16">
-          <Card className="p-0 glass-strong shadow-2xl border-border/50 overflow-hidden">
-            {/* Chat Header */}
+          <N8nAppointmentChatbot webhookUrl={n8nWebhookUrl} onWebhookUrlChange={setN8nWebhookUrl} />
+        </div>
+
+        {/* WhatsApp-Style Conversation */}
+        {/* <div className="max-w-4xl mx-auto mb-16">
+          <Card className="p-0 glass-strong shadow-2xl !border-border/50 overflow-hidden">
+            Chat Header
             <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-6 border-b border-border/50">
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -377,7 +382,7 @@ export default function VoiceAIAgent() {
               </div>
             </div>
 
-            {/* Chat Messages */}
+            Chat Messages 
             <div className="h-[600px] overflow-y-auto bg-gradient-to-b from-background/50 to-background/30 p-4 space-y-3">
               {messages.map((message, index) => (
                 <div
@@ -401,8 +406,8 @@ export default function VoiceAIAgent() {
                 </div>
               ))}
               
-              {/* Live transcript - WhatsApp style */}
-              {/* {currentTranscript && (
+              Live transcript - WhatsApp style
+               {currentTranscript && (
                 <div className="flex justify-end">
                   <div className="max-w-[70%] px-4 py-2 rounded-2xl rounded-br-md bg-primary/80 text-primary-foreground">
                     <p className="text-sm leading-relaxed italic">{currentTranscript}</p>
@@ -411,13 +416,13 @@ export default function VoiceAIAgent() {
                     </p>
                   </div>
                 </div>
-              )} */}
+              )} 
             </div>
 
-            {/* Chat Input Area (Visual Only) */}
-            <div className="p-4 bg-background/50 border-t border-border/50">
+            Chat Input Area (Visual Only)
+            <div className="p-4 bg-background/50 border-t !border-border/50">
               <div className="flex items-center justify-center">
-                <div className="flex items-center px-4 py-2 bg-background/80 rounded-full border border-border/50 w-full max-w-md">
+                <div className="flex items-center px-4 py-2 bg-background/80 rounded-full border !border-border/50 w-full max-w-md">
                   <MessageSquare className="w-4 h-4 text-muted-foreground mr-3" />
                   <span className="text-sm text-muted-foreground">
                     {isConnected ? "Voice conversation active" : "Start conversation to begin"}
@@ -426,7 +431,7 @@ export default function VoiceAIAgent() {
               </div>
             </div>
           </Card>
-        </div>
+        </div> */}
 
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">

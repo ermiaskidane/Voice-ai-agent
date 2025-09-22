@@ -127,7 +127,7 @@ export function N8nAppointmentChatbot({ webhookUrl, onWebhookUrlChange }: N8nApp
         </p>
       </div>
 
-      {showSettings && (
+      {/* {showSettings && (
         <Card className="p-6 mb-6 glass border-border/50">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-semibold">N8N Configuration</h3>
@@ -151,7 +151,7 @@ export function N8nAppointmentChatbot({ webhookUrl, onWebhookUrlChange }: N8nApp
             </div>
           </div>
         </Card>
-      )}
+      )} */}
 
       <Card className="glass-strong shadow-2xl border-border/50 overflow-hidden">
         <div className="bg-gradient-to-r from-primary/10 to-accent/10 p-4 border-b border-border/50">

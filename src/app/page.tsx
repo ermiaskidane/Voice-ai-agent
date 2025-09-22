@@ -23,7 +23,7 @@ export default function VoiceAIAgent() {
   const [isListening, setIsListening] = useState(false)
   const [isSpeaking, setIsSpeaking] = useState(false)
   // const [messages, setMessages] = useState<Message[]>([])
-  const [n8nWebhookUrl, setN8nWebhookUrl] = useState("https://n8n.srv1007779.hstgr.cloud/webhook-test/02982a74-e6c7-4a65-ad41-3905037eb41a")
+  const [n8nWebhookUrl, setN8nWebhookUrl] = useState("")
   const [currentTranscript, setCurrentTranscript] = useState("")
   const [AICurrentTranscript, setAICurrentTranscript] = useState("")
   const [publicKey1, setPublicKey1] = useState("")
